@@ -1,0 +1,20 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<h1>DantonTasksApp</h1>
+<% 
+  if(request.getParameter("login") != null){
+      session.setAttribute("user", request.getParameter("user"));
+      response.sendRedirect(request.getRequestURI());
+  }
+  
+    String nome = (String) session.getAttribute("user");
+%>
+
+<% if(nome == null){ %>
+<form method="POST">
+    <input type="text" name="user" required>
+    <input type="submit" name="login" value="logar">
+</form>
+<% }else{ %>
+<h2><%= nome %></h2>
+<% }%>
